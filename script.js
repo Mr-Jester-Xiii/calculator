@@ -1,34 +1,37 @@
 let x = 0;
 let y = 0;
 let operator = "";
+let previousValue = "";
+let currentValue = "";
 let result = "";
 let topDisplay = "";
 let bottomDisplay = "";
+
 
 const numberButtons = document.querySelectorAll(".number-btn");
 const operatorButtons = document.querySelectorAll(".operator-btn");
 const decimalButton = document.querySelector(".decimal-btn");
 const equalsButton = document.querySelector(".equals-btn");
-const display1 = document.querySelector(".display1");
-const display2 = document.querySelector(".display2");
+
+const displayTop = document.querySelector(".display1");
+const displayBottom = document.querySelector(".display2");
+
 const clearBtn = document.querySelector(".clear-btn");
 const backspaceBtn = document.querySelector(".backspace-btn");
 
 
-numberButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    let buttonValue = button.getAttribute("data-num");
-    topDisplay += buttonValue;
-    display1.textContent = topDisplay;
-  })
-})
+
+numberButtons.forEach((number) => number.addEventListener("click", function(e){
+    handleNumber(e.target.getAttribute("data-num"))
+    displayBottom.textContent = currentValue;
+  }));
 
 operatorButtons.forEach((opButton) => {
   opButton.addEventListener("click", () => {
     let buttonValue = opButton.getAttribute("data-num");
     operator = buttonValue;
     topDisplay += " " + buttonValue + " ";
-    display1.textContent = topDisplay;
+    displayTop.textContent = topDisplay;
     
   })
 })
@@ -39,10 +42,16 @@ decimalButton.addEventListener("click", () => {
   } else {
     let buttonValue = decimalButton.getAttribute("data-num");
     topDisplay += buttonValue;
-    display1.textContent = topDisplay; // Only allows for one decimal point in display.
+    displayTop.textContent = topDisplay; // Only allows for one decimal point in display.
     // needs changing to allow one per number.
   }
 })
+
+function handleNumber(num) {
+  if(currentValue.length <= 5){
+    currentValue += num;
+  }
+}
 
 equalsButton.addEventListener("click", () => {
   // Function for equals
@@ -100,12 +109,15 @@ function operate(operator, x, y) {
 function clearCalc() {
   x = 0;
   y = 0;
+  num = "";
   operator = "";
   result = "";
   topDisplay = "";
   bottomDisplay = "";
-  display1.textContent = topDisplay;
-  display2.textContent = bottomDisplay;
+  currentValue = "";
+  previousValue = "";
+  displayTop.textContent = topDisplay;
+  displayBottom.textContent = bottomDisplay;
 }
 
 function test() {
@@ -119,4 +131,4 @@ function test() {
   alert(result);
 }
 
-test();
+//test();
