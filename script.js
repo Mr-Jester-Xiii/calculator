@@ -1,8 +1,6 @@
 let x = "";
 let y = "";
 let operator = "";
-let previousValue = "";
-let currentValue = "";
 let result = "";
 let topDisplay = "";
 let bottomDisplay = "";
@@ -19,8 +17,6 @@ const displayBottom = document.querySelector(".display2");
 const clearBtn = document.querySelector(".clear-btn");
 const backspaceBtn = document.querySelector(".backspace-btn");
 
-
-
 numberButtons.forEach((number) => number.addEventListener("click", function(e){
     handleNumber(e.target.getAttribute("data-num"))
     displayBottom.textContent = y;
@@ -29,28 +25,27 @@ numberButtons.forEach((number) => number.addEventListener("click", function(e){
 operatorButtons.forEach((opButton) => opButton.addEventListener("click", function(e){
   handleOperator(e.target.getAttribute("data-num"))
   displayTop.textContent = x + "" + operator;
-  displayBottom.textContent = currentValue;
+  displayBottom.textContent = y;
 }))
 
 equalsButton.addEventListener("click", () => {
   operate(operator, x, y);
   y = result;
-  displayTop.textContent = y;
+  displayBottom.textContent = y;
+  displayTop.textContent = "";
 })
 
-decimalButton.addEventListener("click", () => {
-  if(topDisplay.includes(".")) {
-    // Do nothing
+decimalButton.addEventListener("click", function(e) {
+  if (y.includes(".")) {
+    // Do Nothing
   } else {
-    let buttonValue = decimalButton.getAttribute("data-num");
-    topDisplay += buttonValue;
-    displayTop.textContent = topDisplay; // Only allows for one decimal point in display.
-    // needs changing to allow one per number.
+    y += e.target.getAttribute("data-num");
+    displayBottom.textContent = y;
   }
 })
 
 function handleNumber(num) {
-  if(currentValue.length <= 5){
+  if(y.length <= 5){
     y += num;
   }
 }
@@ -108,7 +103,6 @@ function operate(operator, x, y) {
       divideNum(x, y);
       break;
   }
-  return Math.round((result + Number.EPSILON) * 10000) / 10000; // Rounds result to 4 decimal places.
 }
 
 function clearCalc() {
