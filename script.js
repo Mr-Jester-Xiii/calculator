@@ -48,6 +48,10 @@ equalsButton.addEventListener("click", () => {
   // Function for equals
 })
 
+clearBtn.addEventListener("click", () => {
+  clearCalc();
+})
+
 function addNum(x, y) {
   result = parseFloat(x) + parseFloat(y);
   return result;
@@ -64,7 +68,11 @@ function multiplyNum(x, y) {
 }
 
 function divideNum(x, y) {
+  if ((x == 0) || (y == 0)) {
+    result = "Nice try!";
+  } else {
   result = parseFloat(x) / parseFloat(y);
+  }
   return result;
 }
 
@@ -89,13 +97,15 @@ function operate(operator, x, y) {
   return Math.round((result + Number.EPSILON) * 10000) / 10000; // Rounds result to 4 decimal places.
 }
 
-function clearCalc(); {
+function clearCalc() {
   x = 0;
   y = 0;
   operator = "";
   result = "";
   topDisplay = "";
   bottomDisplay = "";
+  display1.textContent = topDisplay;
+  display2.textContent = bottomDisplay;
 }
 
 function test() {
@@ -109,4 +119,4 @@ function test() {
   alert(result);
 }
 
-// test();
+test();
