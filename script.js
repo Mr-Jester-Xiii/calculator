@@ -3,6 +3,12 @@ let y = 0;
 let operator = "";
 let result = "";
 
+const numberButtons = document.querySelectorAll(".number-btn");
+const operatorButtons = document.querySelectorAll(".operator-btn");
+const decimalButton = document.querySelector(".decimal-btn");
+const equalsButton = document.querySelector(".equals-btn");
+const display1 = document.querySelector(".display1");
+const display2 = document.querySelector(".display2");
 
 function addNum(x, y) {
   result = parseFloat(x) + parseFloat(y);
