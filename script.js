@@ -1,5 +1,5 @@
-let x = 0;
-let y = 0;
+let x = "";
+let y = "";
 let operator = "";
 let previousValue = "";
 let currentValue = "";
@@ -23,17 +23,19 @@ const backspaceBtn = document.querySelector(".backspace-btn");
 
 numberButtons.forEach((number) => number.addEventListener("click", function(e){
     handleNumber(e.target.getAttribute("data-num"))
-    displayBottom.textContent = currentValue;
+    displayBottom.textContent = y;
   }));
 
-operatorButtons.forEach((opButton) => {
-  opButton.addEventListener("click", () => {
-    let buttonValue = opButton.getAttribute("data-num");
-    operator = buttonValue;
-    topDisplay += " " + buttonValue + " ";
-    displayTop.textContent = topDisplay;
-    
-  })
+operatorButtons.forEach((opButton) => opButton.addEventListener("click", function(e){
+  handleOperator(e.target.getAttribute("data-num"))
+  displayTop.textContent = x + "" + operator;
+  displayBottom.textContent = currentValue;
+}))
+
+equalsButton.addEventListener("click", () => {
+  operate(operator, x, y);
+  y = result;
+  displayTop.textContent = y;
 })
 
 decimalButton.addEventListener("click", () => {
@@ -49,13 +51,16 @@ decimalButton.addEventListener("click", () => {
 
 function handleNumber(num) {
   if(currentValue.length <= 5){
-    currentValue += num;
+    y += num;
   }
 }
 
-equalsButton.addEventListener("click", () => {
-  // Function for equals
-})
+function handleOperator(op) {
+  operator = op;
+  x = y;
+  y = "";
+
+}
 
 clearBtn.addEventListener("click", () => {
   clearCalc();
@@ -107,8 +112,8 @@ function operate(operator, x, y) {
 }
 
 function clearCalc() {
-  x = 0;
-  y = 0;
+  x = "";
+  y = "";
   num = "";
   operator = "";
   result = "";
