@@ -5,7 +5,6 @@ let result = "";
 let topDisplay = "";
 let bottomDisplay = "";
 
-
 const numberButtons = document.querySelectorAll(".number-btn");
 const operatorButtons = document.querySelectorAll(".operator-btn");
 const decimalButton = document.querySelector(".decimal-btn");
@@ -17,35 +16,43 @@ const displayBottom = document.querySelector(".display2");
 const clearBtn = document.querySelector(".clear-btn");
 const backspaceBtn = document.querySelector(".backspace-btn");
 
-numberButtons.forEach((number) => number.addEventListener("click", function(e){
-    handleNumber(e.target.getAttribute("data-num"))
+numberButtons.forEach((number) =>
+  number.addEventListener("click", function (e) {
+    handleNumber(e.target.getAttribute("data-num"));
     displayBottom.textContent = y;
-  }));
+  })
+);
 
-operatorButtons.forEach((opButton) => opButton.addEventListener("click", function(e){
-  handleOperator(e.target.getAttribute("data-num"))
-  displayTop.textContent = x + "" + operator;
-  displayBottom.textContent = y;
-}))
+operatorButtons.forEach((opButton) =>
+  opButton.addEventListener("click", function (e) {
+    handleOperator(e.target.getAttribute("data-num"));
+    displayTop.textContent = x + "" + operator;
+    displayBottom.textContent = y;
+  })
+);
 
 equalsButton.addEventListener("click", () => {
-  operate(operator, x, y);
-  y = result;
-  displayBottom.textContent = y;
-  displayTop.textContent = "";
-})
+  if (x != "" && y != "") {
+    operate(operator, x, y);
+    y = result;
+    displayBottom.textContent = y;
+    displayTop.textContent = "";
+  } else {
+    // Do Nothing
+  }
+});
 
-decimalButton.addEventListener("click", function(e) {
+decimalButton.addEventListener("click", function (e) {
   if (y.includes(".")) {
     // Do Nothing
   } else {
     y += e.target.getAttribute("data-num");
     displayBottom.textContent = y;
   }
-})
+});
 
 function handleNumber(num) {
-  if(y.length <= 5){
+  if (y.length <= 5) {
     y += num;
   }
 }
@@ -54,12 +61,15 @@ function handleOperator(op) {
   operator = op;
   x = y;
   y = "";
+}
 
+function roundNumber(num) {
+  return Math.round(num * 1000) / 1000;
 }
 
 clearBtn.addEventListener("click", () => {
   clearCalc();
-})
+});
 
 function addNum(x, y) {
   result = parseFloat(x) + parseFloat(y);
@@ -77,10 +87,10 @@ function multiplyNum(x, y) {
 }
 
 function divideNum(x, y) {
-  if ((x == 0) || (y == 0)) {
+  if (x == 0 || y == 0) {
     result = "Nice try!";
   } else {
-  result = parseFloat(x) / parseFloat(y);
+    result = parseFloat(x) / parseFloat(y);
   }
   return result;
 }
@@ -103,6 +113,7 @@ function operate(operator, x, y) {
       divideNum(x, y);
       break;
   }
+  result = roundNumber(result);
 }
 
 function clearCalc() {
@@ -122,7 +133,7 @@ function clearCalc() {
 function test() {
   x = prompt("Enter x:", "");
   console.log(x);
-  operator = prompt("Enter operator:", "")
+  operator = prompt("Enter operator:", "");
   console.log(operator);
   y = prompt("Enter y:", "");
   console.log(y);
