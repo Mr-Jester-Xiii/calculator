@@ -51,6 +51,11 @@ decimalButton.addEventListener("click", function (e) {
   }
 });
 
+backspaceBtn.addEventListener("click", () => {
+  y = y.substring(0, y.length-1);
+  displayBottom.textContent = y;
+})
+
 function handleNumber(num) {
   if (y.length <= 5) {
     y += num;
@@ -129,16 +134,3 @@ function clearCalc() {
   displayTop.textContent = topDisplay;
   displayBottom.textContent = bottomDisplay;
 }
-
-function test() {
-  x = prompt("Enter x:", "");
-  console.log(x);
-  operator = prompt("Enter operator:", "");
-  console.log(operator);
-  y = prompt("Enter y:", "");
-  console.log(y);
-  operate(operator, x, y);
-  alert(result);
-}
-
-//test();
