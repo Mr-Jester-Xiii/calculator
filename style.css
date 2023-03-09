@@ -80,3 +80,28 @@ html {
     background-color: #f78536;
     transition: 0.5s;
 }
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.clear-btn, .backspace-btn {
+    width: 220px;
+    height: 50px;
+    margin: 10px;
+    font-size: 40px;
+    border-radius: 15px;
+    background-color: #497285;
+}
+
+.clear-btn:hover{
+    background-color: #f78536;
+    transition: 0.5s;
+}
+
+.backspace-btn:hover{
+    background-color: #f78536;
+    transition: 0.5s;
+}
