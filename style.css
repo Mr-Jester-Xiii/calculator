@@ -1,5 +1,7 @@
 html {
     background-color: #dfebed;
+    font-family: 'Courier New', monospace;
+    font-variant-numeric: tabular-nums;
 }
 
 .main {
@@ -32,11 +34,12 @@ html {
     padding: 5px;
     border-left-style: inset;
     border-right-style: inset;
+    overflow: hidden;
 }
 
 .display1 {
     height: 40px;
-    font-size: 30px;
+    font-size: 40px;
     border-top-style: inset;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
@@ -44,7 +47,7 @@ html {
 
 .display2 {
     height: 60px;
-    font-size: 50px;
+    font-size: 60px;                      
     border-bottom-style: inset;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
