@@ -68,7 +68,11 @@ function multiplyNum(x, y) {
 }
 
 function divideNum(x, y) {
-  result = parseFloat(x) * parseFloat(y);
+  if ((x == 0) || (y == 0)) {
+    result = "Nice try!";
+  } else {
+  result = parseFloat(x) / parseFloat(y);
+  }
   return result;
 }
 
