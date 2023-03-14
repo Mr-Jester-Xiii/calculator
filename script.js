@@ -162,6 +162,7 @@ function handleKeys(e) {
     } else if (y.length <= 7) {
       y += e.key;
       displayBottom.textContent = y;
+      
     }
   }
 
