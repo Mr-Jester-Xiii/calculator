@@ -142,6 +142,13 @@ function operate(operator, x, y) {
       break;
   }
   result = roundNumber(result);
+  numberCheck(result);
+}
+
+function numberCheck(number) {
+  if (isNaN(number)) {
+    clearCalc();
+  }
 }
 
 function handleKeys(e) {
