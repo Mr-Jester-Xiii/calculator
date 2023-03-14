@@ -35,6 +35,7 @@ html {
     border-left-style: inset;
     border-right-style: inset;
     overflow: hidden;
+    width: 460px;
 }
 
 .display1 {
