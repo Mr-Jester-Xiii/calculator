@@ -1,6 +1,6 @@
 html {
     background-color: #dfebed;
-    font-family: 'Courier New', monospace;
+    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";;
     font-variant-numeric: tabular-nums;
 }
 
@@ -15,8 +15,8 @@ html {
     display: flex;
     flex-direction: column;
     margin: 20px;
-    background-color: #2d4450;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #272838;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2), 0 8px 18px 0 rgba(0, 0, 0, 0.19);
     border-radius: 15px;
 }
 
@@ -27,7 +27,7 @@ html {
 }
 
 .display1, .display2 {
-    background-color: #dfebed;
+    background-color: #f9f8f8;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -61,51 +61,68 @@ html {
     align-items: center;
 }
 
-.number-btn, .operator-btn, .decimal-btn, .equals-btn {
-    width: 100px;
-    height: 100px;
-    margin: 10px;
-    font-size: 40px;
-    border-radius: 15px;
-    background-color: #497285;
-}
-
-.number-btn:hover, .decimal-btn:hover {
-    background-color: #dfebed;
-    transition: 0.5s;
-}
-
-.operator-btn:hover{
-    background-color: #f78536;
-    transition: 0.5s;
-}
-
-.equals-btn:hover{
-    background-color: #f78536;
-    transition: 0.5s;
-}
-
 .toolbar {
     display: flex;
     justify-content: space-between;
     
 }
 
+/* CSS */
+.number-btn, .operator-btn, .decimal-btn, .equals-btn,.clear-btn, .backspace-btn {
+  appearance: none;
+  background-color: #7e7f9a;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: inline-block;
+  line-height: normal;
+  margin: 10px;
+  outline: none;
+  text-align: center;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  touch-action: manipulation;
+  will-change: transform;
+  font-size: 40px;
+}
+
+.number-btn, .operator-btn, .decimal-btn, .equals-btn {
+    width: 100px;
+    height: 100px;
+  }
+
+
 .clear-btn, .backspace-btn {
     width: 220px;
     height: 50px;
     margin: 10px;
     font-size: 40px;
-    border-radius: 15px;
-    background-color: #497285;
 }
 
-.clear-btn:hover{
-    background-color: #f78536;
+.number-btn:hover, .operator-btn:hover, .decimal-btn:hover, .equals-btn:hover, .clear-btn:hover, .backspace-btn:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.number-btn:active, .operator-btn:active, .decimal-btn:active, .equals-btn:active, .clear-btn:active, .backspace-btn:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.number-btn:hover, .decimal-btn:hover {
+    background-color: #f3de8a;
+    color: #000;
     transition: 0.5s;
 }
 
-.backspace-btn:hover{
-    background-color: #f78536;
+.operator-btn:hover, .equals-btn:hover{
+    background-color: #eb9486;
+    color: #000;
+    transition: 0.5s;
+}
+
+.clear-btn:hover, .backspace-btn:hover{
+    background-color: #eb9486;
+    color: #000;
     transition: 0.5s;
 }
