@@ -35,7 +35,7 @@ operatorButtons.forEach((opButton) =>
 );
 
 equalsButton.addEventListener("click", () => {
-  if (x != "" && y != "") {
+  if (x !== "" && y !== "") {
     operate(operator, x, y);
     y = result;
     displayBottom.textContent = y;
