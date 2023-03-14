@@ -54,14 +54,14 @@ decimalButton.addEventListener("click", function (e) {
 });
 
 backspaceBtn.addEventListener("click", () => {
-  y = y.substring(0, y.length-1);
+  y = y.substring(0, y.length - 1);
   displayBottom.textContent = y;
-})
+});
 
 function handleNumber(num) {
-  if (equalsPressed === true){
+  if (equalsPressed === true) {
     clearCalc();
-    y+=num;
+    y += num;
     equalsPressed = false;
   } else if (y.length <= 5) {
     y += num;
@@ -69,10 +69,19 @@ function handleNumber(num) {
 }
 
 function handleOperator(op) {
-  operator = op;
-  x = y;
-  y = "";
-  equalsPressed = false;
+  if (x != "" && y != "") {
+    operator = op;
+    operate(operator, x, y);
+    x = result;
+    y = "";
+    displayTop.textContent = x + "" + operator;
+    displayBottom.textContent = y;
+  } else {
+    operator = op;
+    x = y;
+    y = "";
+    equalsPressed = false;
+  }
 }
 
 function roundNumber(num) {
