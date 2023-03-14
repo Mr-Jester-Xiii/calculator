@@ -26,9 +26,11 @@ numberButtons.forEach((number) =>
 
 operatorButtons.forEach((opButton) =>
   opButton.addEventListener("click", function (e) {
-    handleOperator(e.target.getAttribute("data-num"));
+    if (y === "") {
+      // Do nothing
+    } else {handleOperator(e.target.getAttribute("data-num"));
     displayTop.textContent = x + "" + operator;
-    displayBottom.textContent = y;
+    displayBottom.textContent = y;}
   })
 );
 
