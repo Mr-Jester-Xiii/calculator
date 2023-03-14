@@ -71,20 +71,11 @@ function handleNumber(num) {
 }
 
 function handleOperator(op) {
-  if (x != "" && y != "") {
-    operator = op;
-    operate(operator, x, y);
-    x = result;
-    y = "";
-    displayTop.textContent = x + "" + operator;
-    displayBottom.textContent = y;
-  } else {
     operator = op;
     x = y;
     y = "";
     equalsPressed = false;
   }
-}
 
 function roundNumber(num) {
   return Math.round(num * 1000) / 1000;
