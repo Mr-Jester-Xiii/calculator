@@ -4,6 +4,7 @@ let operator = "";
 let result = "";
 let topDisplay = "";
 let bottomDisplay = "";
+let equalsPressed = false;
 
 const numberButtons = document.querySelectorAll(".number-btn");
 const operatorButtons = document.querySelectorAll(".operator-btn");
@@ -37,6 +38,7 @@ equalsButton.addEventListener("click", () => {
     y = result;
     displayBottom.textContent = y;
     displayTop.textContent = "";
+    equalsPressed = true;
   } else {
     // Do Nothing
   }
@@ -57,7 +59,11 @@ backspaceBtn.addEventListener("click", () => {
 })
 
 function handleNumber(num) {
-  if (y.length <= 5) {
+  if (equalsPressed === true){
+    clearCalc();
+    y+=num;
+    equalsPressed = false;
+  } else if (y.length <= 5) {
     y += num;
   }
 }
@@ -66,6 +72,7 @@ function handleOperator(op) {
   operator = op;
   x = y;
   y = "";
+  equalsPressed = false;
 }
 
 function roundNumber(num) {
