@@ -17,6 +17,8 @@ const displayBottom = document.querySelector(".display2");
 const clearBtn = document.querySelector(".clear-btn");
 const backspaceBtn = document.querySelector(".backspace-btn");
 
+document.addEventListener("keydown", handleKeys);
+
 numberButtons.forEach((number) =>
   number.addEventListener("click", function (e) {
     handleNumber(e.target.getAttribute("data-num"));
@@ -28,9 +30,11 @@ operatorButtons.forEach((opButton) =>
   opButton.addEventListener("click", function (e) {
     if (y === "") {
       // Do nothing
-    } else {handleOperator(e.target.getAttribute("data-num"));
-    displayTop.textContent = x + "" + operator;
-    displayBottom.textContent = y;}
+    } else {
+      handleOperator(e.target.getAttribute("data-num"));
+      displayTop.textContent = x + "" + operator;
+      displayBottom.textContent = y;
+    }
   })
 );
 
@@ -71,11 +75,11 @@ function handleNumber(num) {
 }
 
 function handleOperator(op) {
-    operator = op;
-    x = y;
-    y = "";
-    equalsPressed = false;
-  }
+  operator = op;
+  x = y;
+  y = "";
+  equalsPressed = false;
+}
 
 function roundNumber(num) {
   return Math.round(num * 1000) / 1000;
@@ -128,6 +132,22 @@ function operate(operator, x, y) {
       break;
   }
   result = roundNumber(result);
+}
+
+function handleKeys(e) {
+  if (e.key >= 0 && e.key <= 9) {
+    y += e.key;
+    displayBottom.textContent = y;
+  }
+
+  if (e.key === ".") {
+    if (y.includes(".")) {
+      // Do Nothing
+    } else {
+      y += ".";
+      displayBottom.textContent = y;
+    }
+  }
 }
 
 function clearCalc() {
