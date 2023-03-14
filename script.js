@@ -42,6 +42,7 @@ equalsButton.addEventListener("click", () => {
   if (x !== "" && y !== "") {
     operate(operator, x, y);
     y = result;
+    x = "";
     displayBottom.textContent = y;
     displayTop.textContent = "";
     equalsPressed = true;
@@ -75,10 +76,19 @@ function handleNumber(num) {
 }
 
 function handleOperator(op) {
-  operator = op;
-  x = y;
-  y = "";
-  equalsPressed = false;
+  if (x !== "" && y !== "" && operator !== "") {
+    operate(operator, x, y);
+    operator = op;
+    x = result;
+    y = "";
+    displayTop.textContent = x + "" + operator;
+    displayBottom.textContent = y;
+  } else {
+    operator = op;
+    x = y;
+    y = "";
+    equalsPressed = false;
+  }
 }
 
 function roundNumber(num) {
@@ -135,11 +145,20 @@ function operate(operator, x, y) {
 }
 
 function handleKeys(e) {
+  //Numbers
   if (e.key >= 0 && e.key <= 9) {
-    y += e.key;
-    displayBottom.textContent = y;
+    if (equalsPressed === true) {
+      clearCalc();
+      y += e.key;
+      displayBottom.textContent = y;
+      equalsPressed = false;
+    } else if (y.length <= 7) {
+      y += e.key;
+      displayBottom.textContent = y;
+    }
   }
 
+  //Decimal
   if (e.key === ".") {
     if (y.includes(".")) {
       // Do Nothing
@@ -149,15 +168,34 @@ function handleKeys(e) {
     }
   }
 
+  //Equals
   if (e.key === "=" || e.key === "Enter") {
     if (x !== "" && y !== "") {
       operate(operator, x, y);
       y = result;
+      x = "";
       displayBottom.textContent = y;
       displayTop.textContent = "";
       equalsPressed = true;
     } else {
       // Do Nothing
+    }
+  }
+
+  //Backspace
+  if (e.key === "Backspace") {
+    y = y.substring(0, y.length - 1);
+    displayBottom.textContent = y;
+  }
+
+  //Operators
+  if (e.key === "+" || e.key === "-" || e.key === "/" || e.key === "*") {
+    if (y === "") {
+      // Do nothing
+    } else {
+      handleOperator(e.key);
+      displayTop.textContent = x + "" + operator;
+      displayBottom.textContent = y;
     }
   }
 }
