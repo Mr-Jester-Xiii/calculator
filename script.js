@@ -148,6 +148,18 @@ function handleKeys(e) {
       displayBottom.textContent = y;
     }
   }
+
+  if (e.key === "=" || e.key === "Enter") {
+    if (x !== "" && y !== "") {
+      operate(operator, x, y);
+      y = result;
+      displayBottom.textContent = y;
+      displayTop.textContent = "";
+      equalsPressed = true;
+    } else {
+      // Do Nothing
+    }
+  }
 }
 
 function clearCalc() {
