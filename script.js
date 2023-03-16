@@ -236,4 +236,5 @@ function clearCalc() {
   previousValue = "";
   displayTop.textContent = topDisplay;
   displayBottom.textContent = bottomDisplay;
+  displayBottom.classList.remove("sexynumber");
 }
