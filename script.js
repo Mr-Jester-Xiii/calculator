@@ -5,6 +5,7 @@ let result = "";
 let topDisplay = "";
 let bottomDisplay = "";
 let equalsPressed = false;
+let isSexy = false;
 
 const numberButtons = document.querySelectorAll(".number-btn");
 const operatorButtons = document.querySelectorAll(".operator-btn");
@@ -23,6 +24,7 @@ numberButtons.forEach((number) =>
   number.addEventListener("click", function (e) {
     handleNumber(e.target.getAttribute("data-num"));
     displayBottom.textContent = y;
+    isSexyNumber(y);
   })
 );
 
@@ -70,7 +72,8 @@ function handleNumber(num) {
     clearCalc();
     y += num;
     equalsPressed = false;
-  } else if (y.length <= 5) {
+  } else {
+    y.length <= 12;
     y += num;
   }
 }
@@ -141,13 +144,27 @@ function operate(operator, x, y) {
       divideNum(x, y);
       break;
   }
-  result = roundNumber(result);
+
   numberCheck(result);
+  result = roundNumber(result);
 }
 
 function numberCheck(number) {
   if (isNaN(number)) {
     clearCalc();
+  }
+}
+
+function isSexyNumber(num) {
+  if (num === "5318008") {
+    displayTop.textContent = "Nice!";
+    displayBottom.classList.add("sexynumber");
+    isSexy = true;
+  } else if (isSexy === true) {
+    displayBottom.classList.remove("sexynumber");
+    // displayBottom.classList.add("display2");
+  } else {
+    // Do nothing
   }
 }
 
@@ -159,10 +176,9 @@ function handleKeys(e) {
       y += e.key;
       displayBottom.textContent = y;
       equalsPressed = false;
-    } else if (y.length <= 7) {
+    } else if (y.length <= 12) {
       y += e.key;
       displayBottom.textContent = y;
-      
     }
   }
 
