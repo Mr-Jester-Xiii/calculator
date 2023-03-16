@@ -175,10 +175,12 @@ function handleKeys(e) {
       clearCalc();
       y += e.key;
       displayBottom.textContent = y;
+      isSexyNumber(y);
       equalsPressed = false;
     } else if (y.length <= 12) {
       y += e.key;
       displayBottom.textContent = y;
+      isSexyNumber(y);
     }
   }
 
