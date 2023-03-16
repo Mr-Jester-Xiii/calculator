@@ -12,11 +12,60 @@ html {
     justify-content: center;
 }
 
-.calculator {
-    width: auto;
+.titlecard {
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title1, .title2, .title3{
+    font-size: 36px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.titleword {
+    animation: color-animation 3s linear infinite;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  
+  .title1 {
+    --color-1: #ff6f3c;
+    --color-2: #ff9a3c;
+    --color-3: #ffc93c;
+  }
+  
+  .title2 {
+    --color-1: #ffc93c;
+    --color-2: #ff6f3c;
+    --color-3: #ff9a3c;
+  }
+  
+  .title3 {
+    --color-1: #ff9a3c;
+    --color-2: #ffc93c;
+    --color-3: #ff6f3c;
+  }
+  
+  @keyframes color-animation {
+    0%    {color: var(--color-1)}
+    32%   {color: var(--color-1)}
+    33%   {color: var(--color-2)}
+    65%   {color: var(--color-2)}
+    66%   {color: var(--color-3)}
+    99%   {color: var(--color-3)}
+    100%  {color: var(--color-1)}
+  }
+  
+
+.calculator {
+    width: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
-    margin: 20px;
+    margin: 10px;
     background-color: #272838;
     box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2), 0 8px 18px 0 rgba(0, 0, 0, 0.19);
     border-radius: 15px;
@@ -141,3 +190,24 @@ html {
     border-top-style: solid;
     justify-content: flex-start;
 }
+
+.footer {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a {
+    color: #6b6b6b;
+}
+
+a:hover {
+    color: #ff9a3c;
+    transition: 0.2s;
+}
+
