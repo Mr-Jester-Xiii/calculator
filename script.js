@@ -6,6 +6,7 @@ let topDisplay = "";
 let bottomDisplay = "";
 let equalsPressed = false;
 let isSexy = false;
+let opSymbol = "";
 
 const numberButtons = document.querySelectorAll(".number-btn");
 const operatorButtons = document.querySelectorAll(".operator-btn");
@@ -34,7 +35,8 @@ operatorButtons.forEach((opButton) =>
       // Do nothing
     } else {
       handleOperator(e.target.getAttribute("data-num"));
-      displayTop.textContent = x + "" + operator;
+      opSymbolHandler(operator);
+      displayTop.textContent = x + "" + opSymbol;
       displayBottom.textContent = y;
     }
   })
@@ -155,6 +157,21 @@ function numberCheck(number) {
   }
 }
 
+function opSymbolHandler(operator) {
+ if (operator === "*") {
+  opSymbol = "X"
+ }
+ if (operator === "/") {
+  opSymbol = "÷"
+ }
+ if (operator === "+") {
+  opSymbol = "+"
+ }
+ if (operator === "-") {
+  opSymbol = "-"
+ }
+}
+
 function isSexyNumber(num) {
   if (num === "5318008") {
     displayTop.textContent = "Nice!";
@@ -220,7 +237,8 @@ function handleKeys(e) {
       // Do nothing
     } else {
       handleOperator(e.key);
-      displayTop.textContent = x + "" + operator;
+      opSymbolHandler(operator)
+      displayTop.textContent = x + "" + opSymbol;
       displayBottom.textContent = y;
     }
   }
@@ -239,4 +257,5 @@ function clearCalc() {
   displayTop.textContent = topDisplay;
   displayBottom.textContent = bottomDisplay;
   displayBottom.classList.remove("sexynumber");
+  opSymbol = "";
 }
